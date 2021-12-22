@@ -20,6 +20,19 @@ const constantRoutes = [
             
         ]
     },
+    {
+        path: '/Page',
+        component: Layout,
+        children: [
+            {
+                path: ':id',
+                component: () => import('/@/views/page/index.vue'),
+                name: 'Page',
+                meta: { title: '首頁', icon: 'el-icon-house', affix: true },
+            },
+            
+        ]
+    },
 ];
 
 export default constantRoutes;

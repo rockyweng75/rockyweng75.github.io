@@ -70,9 +70,9 @@ service.interceptors.response.use(
           type: 'warning'
         }).then(() => {
           console.log('resetToken!!')
-          store.dispatch('user/resetToken').then(() => {
-            location.reload()
-          })
+          // store.dispatch('user/resetToken').then(() => {
+          //   location.reload()
+          // })
         })
       }
 
