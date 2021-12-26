@@ -11,7 +11,7 @@ const pathSrc = path.resolve(__dirname, "src");
 export default defineConfig(({command, mode}) => {
   let prodMock = false
   return {
-    base: '/my-vue-app/',
+    base: '/',
     mode: command !== 'serve',
     plugins: [
       vue(),

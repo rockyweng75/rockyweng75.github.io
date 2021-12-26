@@ -1,1 +1,0 @@
-import{u as e,o as s,d as o}from"./vendor.a32da68b.js";import{P as t}from"./index.dd6b8359.js";import"./index.8d376382.js";const m={setup(r){return e().dispatch("page/getPages"),(c,d)=>(s(),o(t))}};export{m as default};

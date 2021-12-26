@@ -1,7 +1,9 @@
 <template>
   <div class="wrapper">
      <div id="container">
+       <transition duration="3000">
         <app-main />
+       </transition>
      </div>
       <el-backtop />
   </div>

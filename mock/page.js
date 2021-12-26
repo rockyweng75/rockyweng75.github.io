@@ -3,7 +3,7 @@ const Pages = [
         rightTitle: '退出',
         leftTitle: '啟程',
         header: '冒險之書',
-        image: './img/book.png',
+        image: '../img/book.png',
         content: {
             row: [
                 { text: '歡迎!歡迎!我尊貴的客人'},

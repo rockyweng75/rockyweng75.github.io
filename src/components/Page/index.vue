@@ -100,28 +100,23 @@ export default {
 }
 </script>
 <style scoped>
+    
     .turn-header:before {
-        /* transform-style: preserve-3d;
-        animation: anim2 3s ;
-        width: 100%;
-        background: white;*/
-        /* transform: rotateY(0deg); */
+        transform-style: preserve-3d;
+        /* animation: turn-left 2s ; */
+        background: white;
         transform-origin: right;
-
-        /* width: 100px;
-        margin-left: -100px;
-        background: white */
     }
     .turn-header:after {
-       transform-style: preserve-3d;
-        animation: turn-left 2s ;
+        transform-style: preserve-3d;
+        /* animation: turn-left 2s ; */
         background: white;
         transform-origin: left;
     }
 
     .turn-content > .content-left {
        transform-style: preserve-3d;
-        animation: turn-left 2s ;
+        /* animation: turn-left 2s ; */
         background: white;
         transform-origin: left;
     }
@@ -133,8 +128,8 @@ export default {
         transform-origin: right;
     }
     .turn-footer:after {
-       transform-style: preserve-3d;
-        animation: turn-left 2s ;
+        transform-style: preserve-3d;
+        /* animation: turn-left 2s ; */
         background: white;
         transform-origin: left;
     }
@@ -146,11 +141,11 @@ export default {
         }
         50% {
             transform: rotateY(90deg);
-            /* visibility:hidden; */
+            visibility:hidden;
         } 
         to {
             transform: rotateY(160deg);
-            /* visibility:hidden; */
+            visibility:hidden;
         }
     }
 
@@ -160,11 +155,11 @@ export default {
         }
         50% {
             transform: rotateY(90deg);
-            /* visibility:hidden; */
+            visibility:hidden;
         } 
         to {
             transform: rotateY(176deg);
-            /* visibility:hidden; */
+            visibility:hidden;
         }
     }
 
