@@ -1,7 +1,5 @@
 const Pages = [
     {
-        rightTitle: '退出',
-        leftTitle: '啟程',
         header: '冒險之書',
         image: '../img/book.png',
         content: {
@@ -27,7 +25,6 @@ const Pages = [
                 //         url: ''
                 //     }
                 // ]}
-
             ]
         },
         footer: '',
@@ -40,7 +37,7 @@ const Pages = [
             {
                 type: '',
                 name: '來冒險的',
-                url: ''
+                url: '/page/next'
             }
         ]
     }, 

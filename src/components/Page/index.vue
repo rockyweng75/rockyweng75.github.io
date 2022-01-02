@@ -1,10 +1,10 @@
 <template>
-  <div class="open-book">
+  <div class="open-book" ref="refDom">
         <el-row class="header turn-header"></el-row>
         <el-row class="turn-content">
             <el-col :span="12" class="content-right">
                 <header>
-                    <h6>{{currentPage.rightTitle}}</h6>
+                    <h6>{{currentPageNumber}}</h6>
                 </header>
                 <h2 class="chapter-title">{{currentPage.header}}</h2>
                 <h2 class="chapter-image" v-if="imageSize > 50"> 
@@ -14,11 +14,11 @@
                         />
                     </el-avatar>
                 </h2>
-                <footer><label id="page-numbers">{{currentPageNumber}}</label></footer>
+                <!-- <footer><label id="page-numbers">{{currentPageNumber}}</label></footer> -->
             </el-col>
             <el-col :span="12" class="content-left">
                 <header>
-                    <h6>{{currentPage.leftTitle}}</h6>
+                    <h6>{{parseInt(currentPageNumber) + 1}}</h6>
                 </header>
                 <template v-if="currentPage.content">
                     <p v-for="(row, index) in currentPage.content.row" v-bind:key="index">
@@ -58,29 +58,40 @@
                             </el-button>
                         </el-button-group>
                     </p>
-                    <p>{{windowsWidth}} / {{imageSize}}</p>
                 </template>
             </el-col>
         </el-row>
         <el-row class="footer turn-footer">
-
+            
         </el-row>
     </div>
 </template>
 
 <script>
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 import { useStore } from 'vuex';
 import { useRoute, useRouter } from 'vue-router';
 
 export default {
     setup() {
+        const refDom = ref({})
         const store = useStore()
         const router = useRouter()
 
         const currentPage = computed(()=> store.getters['page/currentPage'])
         const currentPageNumber = computed(()=> store.getters['page/currentPageNumber'])
-        const goto = (url) => router.push(url)
+
+        const open = () =>{
+            var el = document.getElementsByClassName('content-left')[0];
+            var elc = document.getElementsByClassName('content-right')[0];
+            el.classList.add("turn-left")
+            elc.classList.add("turn-left-content")
+        }
+        const goto = (url) => {
+            open()
+            setTimeout(()=> router.push(url), 2000)
+        }
+
         const windowsWidth = computed(()=> store.getters['app/windowsWidth'])
         const imageSize = computed(()=>{
             if(windowsWidth.value / 2 > 600){
@@ -90,6 +101,7 @@ export default {
             }
         })
         return {
+            refDom,
             currentPage,
             currentPageNumber,
             goto,
@@ -100,6 +112,22 @@ export default {
 }
 </script>
 <style scoped>
+
+    .turn-left{
+        transform-style: preserve-3d;
+    }
+    .turn-left-content{
+        transform-style: preserve-3d;
+        animation: turn-left-content 2s;
+        animation-fill-mode:forwards;
+        transform-origin: left;
+    }
+    .turn-left::before{
+        transform-style: preserve-3d;
+        animation: turn-left 2s;
+        animation-fill-mode:forwards;
+        transform-origin: left;
+    }
     
     .turn-header:before {
         transform-style: preserve-3d;
@@ -115,7 +143,7 @@ export default {
     }
 
     .turn-content > .content-left {
-       transform-style: preserve-3d;
+        transform-style: preserve-3d;
         /* animation: turn-left 2s ; */
         background: white;
         transform-origin: left;

@@ -1,9 +1,23 @@
 <template>
   <div class="wrapper">
      <div id="container">
-       <transition duration="3000">
-        <app-main />
-       </transition>
+       {{show}}
+        <button type="button" v-on:click="show=!show">Test</button>
+        <div class="open-book">
+        <transition 
+          v-on:before-enter="beforeEnter"
+          v-on:enter="enter"
+          v-on:leave="leave"
+          >
+            <div class="page" ref="refDom" v-if="show">
+              <el-row class="header"></el-row>
+              <el-row class="content">
+                  <app-main />
+              </el-row>
+              <el-row class="footer"></el-row>
+            </div>
+        </transition>
+        </div>
      </div>
       <el-backtop />
   </div>
@@ -15,41 +29,61 @@
 
 <script>
 import { AppMain } from './components'
-import ResizeMixin from './mixin/resizeHandler'
-import { mapState } from 'vuex'
+// import ResizeMixin from './mixin/resizeHandler'
+import { reactive, ref } from 'vue'
 
 export default {
-  name: 'Layout',
-  components: {
-    AppMain,
+  components:{
+    AppMain
   },
-  mixins: [ResizeMixin],
-  computed: {
-    ...mapState({
-      // sidebar: state => state.app.sidebar,
-      device: state => state.app.device,
-      showSettings: state => state.settings.showSettings,
-      needTagsView: state => state.settings.tagsView,
-      fixedHeader: state => state.settings.fixedHeader
-    }),
-    classObj() {
-      return {
-        // hideSidebar: !this.sidebar.opened,
-        // openSidebar: this.sidebar.opened,
-        // withoutAnimation: this.sidebar.withoutAnimation,
-        mobile: this.device === 'mobile'
+  // mixins: [ResizeMixin],
+  setup() {
+
+    const show = ref(false)
+    const refDom = ref({})
+    return {
+      show,
+      refDom,
+      beforeEnter: (el) =>{
+        console.log('beforeEnter', el.className)
+        // el.style.opacity = 0
+      },
+      enter: (el, done) =>{
+        console.log('enter', el.className)
+        done();
+      },
+      leave: (el, done) =>{
+        console.log('leave', el.className)
+        done();
       }
     }
   },
-  methods: {
-    // handleClickOutside() {
-    //   this.$store.dispatch('app/closeSideBar', { withoutAnimation: false })
-    // }
-  }
 }
 </script>
 
-<style>
-  @import "/@/css/book.css";
+<style scoped>
 
+  .v-enter-active {
+    transition: all .3s ease;
+  }
+  .v-leave-active {
+    transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+  }
+  .v-enter-from, .v-enter-to {
+    animation: var(--animation)
+  } 
+
+    @keyframes turn  {
+        from{
+            
+        }
+        50% {
+            transform: rotateY(90deg);
+            visibility:hidden;
+        } 
+        to {
+            transform: rotateY(160deg);
+            visibility:hidden;
+        }
+    }
 </style>

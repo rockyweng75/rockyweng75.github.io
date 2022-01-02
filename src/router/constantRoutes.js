@@ -1,4 +1,8 @@
 import Layout from '/@/layout/index.vue'
+import HomeLayout from '/@/layout/homeLayout.vue'
+
+import {useStore} from 'vuex'
+
 
 const constantRoutes = [
     { 
@@ -8,7 +12,7 @@ const constantRoutes = [
     },
     {
         path: '/',
-        component: Layout,
+        component: HomeLayout,
         redirect: '/home',
         children: [
             {
@@ -28,7 +32,25 @@ const constantRoutes = [
                 path: ':id',
                 component: () => import('/@/views/page/index.vue'),
                 name: 'Page',
-                meta: { title: '首頁', icon: 'el-icon-house', affix: true },
+                meta: { affix: true },
+                props: route => {
+                    return {
+                        id: route.params.id
+                    }
+                },
+            },
+            {
+                path: 'next',
+                component: () => import('/@/views/page/index.vue'),
+                name: 'PageNext',
+                props: route => {
+                    const store = useStore()
+                    const currentPageNumber = store.getters['page/currentPageNumber']
+                    return {
+                        id: currentPageNumber + 1
+                    }
+                },
+                meta: { affix: true },
             },
             
         ]

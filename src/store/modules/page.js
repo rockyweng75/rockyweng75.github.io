@@ -1,4 +1,6 @@
 import { fetchPages } from '/@/api/page.js'
+
+const key = "book-rgp-pages"
 const state = () => ({
     page: {
         // title: '冒險之書',
@@ -8,30 +10,28 @@ const state = () => ({
         // content:'',
     }, 
     pageNumber: 0,
-    pages:[],
+    pages: [],
   })
   
   const mutations = {
     setPage: (state, index) => {
         state.page = state.pages[index]
-        state.pageNumber = (index * 2) + 1
+        state.pageNumber = index + 1
+        sessionStorage.setItem('page', JSON.stringify(state.page))
+        sessionStorage.setItem('pageNumber', JSON.stringify(state.pageNumber))
+
     },
     setPages: (state, pages) => {
+        localStorage.setItem(key, JSON.stringify(pages))
         state.pages = pages
     }
   }
   
   const actions = {
-    next({commit}){
+    getPage({commit, state}, index){
         return new Promise((resolve, reject) => {
-            fetchPage()
-            .then(response => {
-                commit('setPages', response)
-                resolve(response)
-            })
-            .catch(error => {
-                reject(error)
-            })
+            console.log('getPage' + index)
+            commit('setPage', index - 1)
         })
     },
     getPages({commit}){
@@ -51,7 +51,7 @@ const state = () => ({
   
   const getters ={
     currentPage:(state) => {
-      return state.page
+        return state.page
     },
     currentPageNumber:(state) => {
         return state.pageNumber

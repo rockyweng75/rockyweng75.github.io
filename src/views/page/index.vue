@@ -1,11 +1,18 @@
 <template>
-    <Page></Page>
+    <!-- <Page></Page> -->
+    TEST
 </template>
 
 <script setup>
     import Page from '/@/components/Page/index.vue'
     import { useStore } from 'vuex'
+
     const store = useStore()
-    store.dispatch('page/getPages')
+    const props = defineProps({
+        id: Number
+    })
+    console.log(props)
+    store.dispatch('page/getPage', props.id)
 </script>
+
 
