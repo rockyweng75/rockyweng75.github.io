@@ -362,7 +362,7 @@ body {
     } 
 
     /* Header/Footer */
-    .page .header:before,
+    .page > .header:before,
     .page > .header:after,
     .page > .footer:before,
     .page > .footer:after {
@@ -386,10 +386,15 @@ body {
         border-top: none;
     }
 
-    .page > .content{
+    .page > .content:before,
+    .page > .content:after{
+        content: '';
         border: gray solid;
         border-top: none;
         border-bottom: none;
+        position: absolute;
+        width: calc(50%);
+        height: 700px;
     }
 
     .page > .header:before,
@@ -422,6 +427,7 @@ body {
     }
 
     .page > .header:before,
+    .page > .content:before,
     .page > .footer:before {
         right: 50%;
     }
@@ -431,6 +437,7 @@ body {
     }
 
     .page > .header:after,
+    .page > .content:after,
     .page > .footer:after {
         left: 50%;
     }
