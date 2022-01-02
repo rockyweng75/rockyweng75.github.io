@@ -69,8 +69,16 @@ export default {
   .v-leave-active {
     transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
   }
-  .v-enter-from, .v-enter-to {
-    animation: var(--animation)
+  .v-enter-from > .header:after, 
+  .v-enter-from > .content:after, 
+  .v-enter-from > .footer:after, 
+  .v-enter-to > .header:after, 
+  .v-enter-to > .content:after, 
+  .v-enter-to > .footer:after {
+    transform-style: preserve-3d;
+    animation: turn 2s;
+    animation-fill-mode:forwards;
+    transform-origin: left;
   } 
 
     @keyframes turn  {
@@ -78,12 +86,14 @@ export default {
             
         }
         50% {
-            transform: rotateY(90deg);
-            visibility:hidden;
+          transform: rotateY(90deg);
+          content: '';
+          z-index: 1;
         } 
         to {
-            transform: rotateY(160deg);
-            visibility:hidden;
+          transform: rotateY(170deg);
+          content: '';
+          z-index: 1;
         }
     }
 </style>
