@@ -1,7 +1,6 @@
 <template>
   <div class="wrapper">
      <div id="container">
-       {{show}}
         <button type="button" v-on:click="show=!show">Test</button>
         <div class="open-book">
         <transition 
@@ -9,10 +8,16 @@
           v-on:enter="enter"
           v-on:leave="leave"
           >
-            <div class="page" ref="refDom" v-if="show">
+            <div class="page" ref="refDom" >
               <el-row class="header"></el-row>
               <el-row class="content">
-                  <app-main />
+                <div class="app-main">
+                  <router-view v-slot="{ Component, route }">
+                    <!-- <keep-alive> -->
+                      <component :is="Component" :key="route.path"  />
+                    <!-- </keep-alive> -->
+                  </router-view>
+                </div>
               </el-row>
               <el-row class="footer"></el-row>
             </div>
@@ -28,15 +33,13 @@
 </template>
 
 <script>
-import { AppMain } from './components'
-// import ResizeMixin from './mixin/resizeHandler'
+import ResizeMixin from './mixin/resizeHandler'
 import { reactive, ref } from 'vue'
 
 export default {
   components:{
-    AppMain
   },
-  // mixins: [ResizeMixin],
+  mixins: [ResizeMixin],
   setup() {
 
     const show = ref(false)

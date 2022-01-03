@@ -15,7 +15,7 @@
 
 <script>
 import { AppMain } from './components'
-// import ResizeMixin from './mixin/resizeHandler'
+import ResizeMixin from './mixin/resizeHandler'
 import { mapState } from 'vuex'
 
 export default {
@@ -23,7 +23,7 @@ export default {
   components: {
     AppMain,
   },
-  // mixins: [ResizeMixin],
+  mixins: [ResizeMixin],
   computed: {
     ...mapState({
       // sidebar: state => state.app.sidebar,
