@@ -30,6 +30,7 @@ const state = () => ({
   const actions = {
     getPage({commit, state, dispatch}, index){
         return new Promise((resolve, reject) => {
+            console.log(state.pages)
             if(state.pages.length === 0){
                 dispatch('getPages')
                 commit('setPage', index - 1)

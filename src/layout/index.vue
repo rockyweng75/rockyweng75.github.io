@@ -1,27 +1,25 @@
 <template>
   <div class="wrapper">
      <div id="container">
-        <button type="button" v-on:click="show=!show">Test</button>
         <div class="open-book">
-        <transition 
-          v-on:before-enter="beforeEnter"
-          v-on:enter="enter"
-          v-on:leave="leave"
-          >
-            <div class="page" ref="refDom" >
-              <el-row class="header"></el-row>
-              <el-row class="content">
+          <router-view v-slot="{ Component, route }">
+            <!-- <keep-alive> -->
+              <div class="page" ref="refDom" >
+                <!-- <el-row class="header"><div class="right"></div><div class="left"></div></el-row> -->
                 <div class="app-main">
-                  <router-view v-slot="{ Component, route }">
-                    <!-- <keep-alive> -->
-                      <component :is="Component" :key="route.path"  />
-                    <!-- </keep-alive> -->
-                  </router-view>
+                  <transition name="turn" mode="out-in"
+                    v-on:before-enter="beforeEnter"
+                    v-on:enter="enter"
+                    v-on:leave="leave"
+                    :duration="{ enter: 2000, leave: 2000 }"
+                    >
+                    <component :is="Component" :key="route.path"/>
+                  </transition>
                 </div>
-              </el-row>
-              <el-row class="footer"></el-row>
-            </div>
-        </transition>
+                <!-- <el-row class="footer"><div class="right"></div><div class="left"></div></el-row> -->
+              </div>
+            <!-- </keep-alive> -->
+          </router-view>
         </div>
      </div>
       <el-backtop />
@@ -50,53 +48,54 @@ export default {
       beforeEnter: (el) =>{
         console.log('beforeEnter', el.className)
         // el.style.opacity = 0
+
       },
       enter: (el, done) =>{
-        console.log('enter', el.className)
+        console.log('enter', el.className, refDom)
+        console.log(refDom.value.getElementsByClassName('right'))
+
         done();
       },
       leave: (el, done) =>{
-        console.log('leave', el.className)
-        done();
+        console.log('leave', el.className, refDom)
+        console.log(refDom.value.getElementsByClassName('header'))
+        refDom.value.getElementsByClassName('right')[0].classList.add("turn-right");
+        setTimeout(()=>{
+          done();
+        }, 1000)
       }
     }
   },
 }
 </script>
 
-<style scoped>
+<style>
 
-  .v-enter-active {
-    transition: all .3s ease;
+  .content-fade{
+    transition: opacity 0.5s ease;
   }
-  .v-leave-active {
-    transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
-  }
-  .v-enter-from > .header:after, 
-  .v-enter-from > .content:after, 
-  .v-enter-from > .footer:after, 
-  .v-enter-to > .header:after, 
-  .v-enter-to > .content:after, 
-  .v-enter-to > .footer:after {
+
+  .turn-right{
     transform-style: preserve-3d;
-    animation: turn 2s;
     animation-fill-mode:forwards;
     transform-origin: left;
-  } 
+    animation: turn 1s;
+  }
 
-    @keyframes turn  {
-        from{
-            
-        }
-        50% {
-          transform: rotateY(90deg);
-          content: '';
-          z-index: 1;
-        } 
-        to {
-          transform: rotateY(170deg);
-          content: '';
-          z-index: 1;
-        }
-    }
+
+  @keyframes turn  {
+      from{
+          
+      }
+      50% {
+        transform: rotateY(90deg);
+        content: '';
+        z-index: 1;
+      } 
+      to {
+        transform: rotateY(170deg);
+        content: '';
+        z-index: 1;
+      }
+  }
 </style>
