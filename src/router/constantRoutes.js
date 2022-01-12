@@ -43,7 +43,8 @@ const constantRoutes = [
                 path: 'next',
                 component: () => import('/@/views/page/index.vue'),
                 name: 'PageNext',
-                props: route => {
+                props: (route, router) => {
+                    console.log(route, router)
                     const store = useStore()
                     const currentPageNumber = store.getters['page/currentPageNumber']
                     return {

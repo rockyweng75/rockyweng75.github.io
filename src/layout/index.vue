@@ -57,9 +57,10 @@ export default {
         done();
       },
       leave: (el, done) =>{
-        console.log('leave', el.className, refDom)
-        console.log(refDom.value.getElementsByClassName('header'))
-        refDom.value.getElementsByClassName('right')[0].classList.add("turn-right");
+        var page = refDom.value.getElementsByClassName('right')[0]
+        page.classList.add("turn-right")
+        var content = page.children[0]
+        content.classList.add("hide-content")
         setTimeout(()=>{
           done();
         }, 1000)
@@ -80,22 +81,38 @@ export default {
     animation-fill-mode:forwards;
     transform-origin: left;
     animation: turn 1s;
+    background-color: white;
   }
+  .hide-content{
+    animation: hide 1s;
+  }
+
 
 
   @keyframes turn  {
       from{
-          
+
       }
       50% {
         transform: rotateY(90deg);
         content: '';
-        z-index: 1;
+        z-index: 0;
       } 
       to {
         transform: rotateY(170deg);
         content: '';
         z-index: 1;
+      }
+  }
+  
+  @keyframes hide  {
+      from{
+
+      }
+      50% {
+      } 
+      to {
+        opacity: 0;
       }
   }
 </style>
