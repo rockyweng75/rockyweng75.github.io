@@ -39,20 +39,21 @@ const constantRoutes = [
                     }
                 },
             },
-            {
-                path: 'next',
-                component: () => import('/@/views/page/index.vue'),
-                name: 'PageNext',
-                props: (route, router) => {
-                    console.log(route, router)
-                    const store = useStore()
-                    const currentPageNumber = store.getters['page/currentPageNumber']
-                    return {
-                        id: currentPageNumber + 1
-                    }
-                },
-                meta: { affix: true },
-            },
+            // {
+            //     path: 'next',
+            //     component: () => import('/@/views/page/index.vue'),
+            //     name: 'PageNext',
+            //     props: (route, router) => {
+            //         console.log(route, router)
+            //         const store = useStore()
+            //         const currentPageNumber = store.getters['page/currentPageNumber']
+            //         console.log(currentPageNumber)
+            //         return {
+            //             id: currentPageNumber + 1
+            //         }
+            //     },
+            //     meta: { affix: true },
+            // },
             
         ]
     },
