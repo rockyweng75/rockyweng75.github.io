@@ -57,6 +57,39 @@ const constantRoutes = [
             
         ]
     },
+    {
+        path: '/Attack',
+        component: Layout,
+        children: [
+            {
+                path: ':id',
+                component: () => import('/@/views/attack/index.vue'),
+                name: 'Attack',
+                meta: { affix: true },
+                props: route => {
+                    return {
+                        id: route.params.id
+                    }
+                },
+            },
+            // {
+            //     path: 'next',
+            //     component: () => import('/@/views/page/index.vue'),
+            //     name: 'PageNext',
+            //     props: (route, router) => {
+            //         console.log(route, router)
+            //         const store = useStore()
+            //         const currentPageNumber = store.getters['page/currentPageNumber']
+            //         console.log(currentPageNumber)
+            //         return {
+            //             id: currentPageNumber + 1
+            //         }
+            //     },
+            //     meta: { affix: true },
+            // },
+            
+        ]
+    },
 ];
 
 export default constantRoutes;

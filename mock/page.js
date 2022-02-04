@@ -1,5 +1,6 @@
 const Pages = [
     {
+        id: 1,
         header: '冒險之書',
         image: '../img/book.png',
         content: {
@@ -29,6 +30,7 @@ const Pages = [
         ]
     }, 
     {
+        id: 2,
         header: '啟始之門',
         image: '../img/door.png',
         content: {
@@ -57,6 +59,7 @@ const Pages = [
         ]
     }, 
     {
+        id: 3,
         header: '選擇之道',
         image: '../img/arrows.png',
         content: {
@@ -76,31 +79,118 @@ const Pages = [
             {
                 type: '',
                 name: '左邊', 
-                url: '/page/5'
+                url: '/page/4'
             },
             {
                 type: '',
                 name: '中間', 
-                url: '/page/6'
+                url: '/page/5'
             },
             {
                 type: '',
                 name: '右邊',
-                url: '/page/7'
+                url: '/page/6'
             },
             {
                 type: '',
                 name: '轉頭離開',
-                url: '/page/3'
+                url: '/page/2'
             }
         ]
     }, 
     {
-        rightTitle: '',
-        leftTitle: '',
-        content:'',
+        id: 4,
+        header: '遭遇強敵',
+        image: '../img/monster.png',
+        content: {
+            row: [
+                { text: '邁開腳步前進，隨著腳步向前，水聲漸漸變的清晰'},
+                { br: true},
+                { text: '約莫半時，前方出現一個小水池'},
+                { text: '當你向前查看水池的時候，突然間，從池子內跳出一隻怪物向你攻擊'},
+                { br: true},
+                { text: '勇者喲！'},
+                { br: true},
+                { html: '<mark>選擇吧！<mark>'},
+                { br: true},
+            ]
+        },
+        footer: '',
+        action:[
+            {
+                type: '',
+                name: '攻擊', 
+                url: '/page/5'
+            },
+            {
+                type: '',
+                name: '逃走', 
+                url: '/page/3'
+            },
+        ]
     }, 
-
+    {
+        id: 5,
+        header: '黑暗侵襲',
+        image: '../img/way.png',
+        content: {
+            row: [
+                { text: '摸著牆邊前進，隨著你的勇氣向前'},
+                { br: true},
+                { text: '隨著身後的房間已經遠離，四處已經看不見任何東西'},
+                { text: '鼓氣勇氣向前吧！'},
+                { br: true},
+                { text: '勇者喲！'},
+                { br: true},
+                { html: '<mark>選擇吧！<mark>'},
+                { br: true},
+            ]
+        },
+        footer: '',
+        action:[
+            {
+                type: '',
+                name: '前進', 
+                url: '/page/5'
+            },
+            {
+                type: '',
+                name: '逃走', 
+                url: '/page/3'
+            },
+        ]
+    },
+    {
+        id: 6,
+        header: '道具商人',
+        image: '../img/merchant.png',
+        content: {
+            row: [
+                { text: '兩側牆上掛著明亮的燈，往這走看來是不錯選擇'},
+                { text: '隨著香氣越來越濃，前方漸漸可以看到一間小屋'},
+                { br: true},
+                { html: '小屋上掛著<mark>西螺肉鬆<mark>字樣，看來是間道具商店'},
+                { br: true},
+                { text: '勇者喲！'},
+                { br: true},
+                { html: '<mark>選擇吧！<mark>'},
+                { br: true},
+            ]
+        },
+        footer: '',
+        action:[
+            {
+                type: '',
+                name: '進入', 
+                url: '/page/5'
+            },
+            {
+                type: '',
+                name: '離開', 
+                url: '/page/3'
+            },
+        ]
+    },
 ]
 
 

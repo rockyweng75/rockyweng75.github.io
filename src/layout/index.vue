@@ -32,7 +32,8 @@
 
 <script>
 import ResizeMixin from './mixin/resizeHandler'
-import { reactive, ref } from 'vue'
+import { reactive, ref, watch } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 
 export default {
   components:{
@@ -42,23 +43,31 @@ export default {
 
     const show = ref(false)
     const refDom = ref({})
+    const route = useRoute()
+    const router = useRouter()
+    const state = reactive({
+      farword: false
+    })
+    router.afterEach((to, from) => {
+      var fromId = from.params.id;
+      var toId = to.params.id;
+      if(fromId > toId) state.farword = false
+      else state.farword = true
+    })
     return {
       show,
       refDom,
       beforeEnter: (el) =>{
-        console.log('beforeEnter', el.className)
-        // el.style.opacity = 0
-
       },
       enter: (el, done) =>{
-        console.log('enter', el.className, refDom)
-        console.log(refDom.value.getElementsByClassName('right'))
-
         done();
       },
       leave: (el, done) =>{
-        var page = refDom.value.getElementsByClassName('right')[0]
-        page.classList.add("turn-right")
+        var action = "";
+        if(state.farword) action = 'right';
+        else action = 'left';
+        var page = refDom.value.getElementsByClassName(action)[0]
+        page.classList.add("turn-" + action)
         var content = page.children[0]
         content.classList.add("hide-content")
         setTimeout(()=>{
@@ -75,21 +84,42 @@ export default {
   .content-fade{
     transition: opacity 0.5s ease;
   }
+  .turn-left{
+    transform-style: preserve-3d;
+    animation-fill-mode:forwards;
+    transform-origin: right;
+    animation: turn-left 1s;
+    background-color: white;
+  }
 
   .turn-right{
     transform-style: preserve-3d;
     animation-fill-mode:forwards;
     transform-origin: left;
-    animation: turn 1s;
+    animation: turn-right 1s;
     background-color: white;
   }
   .hide-content{
     animation: hide 1s;
   }
 
+  @keyframes turn-left  {
+      from{
 
+      }
+      50% {
+        transform: rotateY(90deg);
+        content: '';
+        z-index: 0;
+      } 
+      to {
+        transform: rotateY(170deg);
+        content: '';
+        z-index: 1;
+      }
+  }
 
-  @keyframes turn  {
+  @keyframes turn-right  {
       from{
 
       }

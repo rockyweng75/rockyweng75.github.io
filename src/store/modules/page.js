@@ -3,11 +3,6 @@ import { fetchPages } from '/@/api/page.js'
 const key = "book-rgp-pages"
 const state = () => ({
     page: {
-        // title: '冒險之書',
-        // number: 1,
-        // rightTitle: '',
-        // leftTitle: '',
-        // content:'',
     }, 
     pageNumber: 0,
     pages: [],
@@ -30,10 +25,10 @@ const state = () => ({
   const actions = {
     getPage({commit, state, dispatch}, index){
         return new Promise((resolve, reject) => {
-            console.log(state.pages)
             if(state.pages.length === 0){
-                dispatch('getPages')
-                commit('setPage', index - 1)
+                dispatch('getPages').then(()=>{
+                    commit('setPage', index - 1)
+                })
             } else {
                 commit('setPage', index - 1)
             }

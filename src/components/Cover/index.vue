@@ -31,8 +31,8 @@ export default {
         const open = () =>{
             var el = document.getElementsByClassName('front-cover')[0];
             var elc = document.getElementsByClassName('content-right')[0];
-            el.classList.add("turn-left")
-            elc.classList.add("turn-left-content")
+            el.classList.add("home-turn-left")
+            elc.classList.add("home-turn-left-content")
             setTimeout(()=>goto('/page/1'), 2000)
         }
 
@@ -46,49 +46,49 @@ export default {
 </script>
 <style scoped>
     
-    .turn-left{
+    .home-turn-left{
         transform-style: preserve-3d;
     }
-    .turn-left-content{
+    .home-turn-left-content{
         transform-style: preserve-3d;
-        animation: turn-left-content 2s;
+        animation: home-turn-left-content 2s;
         animation-fill-mode:forwards;
         transform-origin: left;
     }
-    .turn-left::before{
+    .home-turn-left::before{
         transform-style: preserve-3d;
-        animation: turn-left 2s;
+        animation: home-turn-left 2s;
         animation-fill-mode:forwards;
         transform-origin: left;
     }
 
-    .turn-header:before {
+    .home-turn-header:before {
         transform-style: preserve-3d;
         /* animation: turn-left 2s ; */
         background: white;
         transform-origin: right;
     }
-    .turn-header:after {
+    .home-turn-header:after {
         transform-style: preserve-3d;
         /* animation: turn-left 2s ; */
         background: white;
         transform-origin: left;
     }
 
-    .turn-content > .content-left {
+    .home-turn-content > .content-left {
        transform-style: preserve-3d;
         /* animation: turn-left 2s ; */
         background: white;
         transform-origin: left;
     }
 
-    .turn-footer:before {
+    .home-turn-footer:before {
         transform-style: preserve-3d;
         /* animation: turn-right 2s ; */
         background: white;
         transform-origin: right;
     }
-    .turn-footer:after {
+    .home-turn-footer:after {
         transform-style: preserve-3d;
         /* animation: turn-left 2s ; */
         background: white;
@@ -96,7 +96,7 @@ export default {
     }
 
 
-    @keyframes turn-left  {
+    @keyframes home-turn-left  {
         from{
             
         }
@@ -109,7 +109,7 @@ export default {
 
         }
     }
-    @keyframes turn-left-content  {
+    @keyframes home-turn-left-content  {
         from{
             
         }
@@ -123,7 +123,7 @@ export default {
         }
     }
 
-    @keyframes turn-right  {
+    @keyframes home-turn-right  {
         from{
             
         }

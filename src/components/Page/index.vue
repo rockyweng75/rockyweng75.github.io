@@ -77,9 +77,9 @@ export default {
         const store = useStore()
         const router = useRouter()
 
-        onBeforeMount(()=>{
-            store.dispatch('page/getPage', prop.id)
-        })
+        // onBeforeMount(()=>{
+        //     store.dispatch('page/getPage', prop.id)
+        // })
 
         const currentPage = computed(()=> store.getters['page/currentPage'])
         const currentPageNumber = computed(()=> store.getters['page/currentPageNumber'])
@@ -116,7 +116,6 @@ export default {
         padding-right: 3em;
         z-index:255;
     }
-    
 </style>
   
 
