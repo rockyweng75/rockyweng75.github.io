@@ -26,7 +26,6 @@
                         <template v-if="row.text">{{row.text}}</template>
                         <template v-if="row.br"><br/></template>
                         <template v-if="row.html"><div v-html="row.html"></div></template>
-                        <template v-if="row.input"><el-input :placeholder="row.placeholder"></el-input></template>
                         <template v-if="row.avatar">
                             <el-avatar fit="fill" shape="square" :size="row.avatar.size" :src="row.avatar.url">
                                 <img
@@ -82,8 +81,8 @@ export default {
         //     store.dispatch('page/getPage', prop.id)
         // })
 
-        const currentPage = computed(()=> store.getters['page/currentPage'])
-        const currentPageNumber = computed(()=> store.getters['page/currentPageNumber'])
+        const currentPage = computed(()=> store.getters['attack/currentAttack'])
+        const currentPageNumber = computed(()=> store.getters['attack/currentAttackNumber'])
 
         const goto = (url) => {
             router.push(url)

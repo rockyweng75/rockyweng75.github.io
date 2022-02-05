@@ -5,6 +5,7 @@ import app from './modules/app'
 import settings from './modules/settings'
 import errorLog from './modules/errorLog'
 import page from './modules/page'
+import attack from './modules/attack'
 
 
 const debug = process.env.NODE_ENV !== 'production'
@@ -13,7 +14,8 @@ const store = createStore({
         app,
         settings,
         errorLog,
-        page
+        page,
+        attack
     },
     // getters,
     strict: debug,
