@@ -148,5 +148,57 @@ export default  [
              "url": "/page/3"
           }
        ]
-    }
+    },
+    {
+      "id": 8,
+      "header": "戰鬥",
+      "image": "../img/swords.png",
+      "content": {
+         "row": [
+            {
+               "text": "你蓄起力來將手中的武器揮向對方。"
+            },
+            {
+               "br": true
+            },
+            {
+               "text": "咚的一聲！"
+            },
+            {
+               "br": true
+            },
+            {
+               "text": "對方還是沒有任何損傷。"
+            },
+            {
+               "br": true
+            },
+            {
+               "text": "勇者喲！"
+            },
+            {
+               "br": true
+            },
+            {
+               "html": "先行撤退吧！"
+            },
+            {
+               "br": true
+            }
+         ]
+      },
+      "footer": "",
+      "action": [
+         {
+            "type": "",
+            "name": "使用道具",
+            "url": "/cast/3"
+         },
+         {
+            "type": "",
+            "name": "撤退",
+            "url": "/page/3"
+         }
+      ]
+   }
  ]
