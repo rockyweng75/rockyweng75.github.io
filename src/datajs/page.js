@@ -36,7 +36,7 @@ export default  [
           {
              "type": "",
              "name": "來問路的",
-             "url": ""
+             "url": "/author"
           },
           {
              "type": "",
