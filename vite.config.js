@@ -13,6 +13,13 @@ export default defineConfig(({command, mode}) => {
   return {
     base: '/',
     mode: command !== 'serve',
+    build:{
+      manifest: true,
+      // rollupOptions: {
+      //   // 覆盖默认的 .html 入口
+      //   input: '/main.js'
+      // }
+    },
     plugins: [
       vue(),
       viteMockServe ({
