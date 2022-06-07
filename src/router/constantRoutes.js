@@ -108,6 +108,11 @@ const constantRoutes = [
             },
         ]
     },
+    {
+        path: '/Author',
+        component: () => import('/@/views/author/index.vue'),
+    },
+    
 ];
 
 export default constantRoutes;

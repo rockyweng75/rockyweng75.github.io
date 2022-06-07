@@ -19,8 +19,8 @@ const Pages = [
         action:[
             {
                 type: '',
-                name: '來問路的', 
-                url: ''
+                name: '來找作者', 
+                url: '/Author'
             },
             {
                 type: '',
